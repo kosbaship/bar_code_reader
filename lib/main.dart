@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
-  theme: ThemeData.dark(),
   home: QRCode(),
 ));
 
@@ -19,7 +18,7 @@ class _QRCodeState extends State<QRCode> {
     return Scaffold(
       appBar: AppBar(
         title:
-        Text('Qr / Bar Code Reader'),
+        Text('Qr / Barcode Reader'),
         centerTitle: true,
       ),
       body: Column(
@@ -31,8 +30,24 @@ class _QRCodeState extends State<QRCode> {
           SizedBox(
             width: double.infinity,
           ),
-          Text('Demo Two',
-            style: TextStyle(fontSize: 50.0),
+          // عمل زرار شكله حلو
+          Material(
+            elevation: 5.0,
+            color: Colors.lightBlueAccent,
+            borderRadius: BorderRadius.circular(30.0),
+            child: MaterialButton(
+              minWidth: 200.0,
+              height: 42.0,
+              onPressed: () {
+
+              },
+              child: Text('Scan Barcode',
+                style: TextStyle(
+                    fontSize: 32.0,
+                    color: Colors.white
+                ),
+              ),
+            ),
           ),
         ],
       ),
