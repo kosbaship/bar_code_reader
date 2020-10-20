@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// هنعمل للباكدج امبورت
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
@@ -12,6 +14,20 @@ class QRCode extends StatefulWidget {
 }
 
 class _QRCodeState extends State<QRCode> {
+  // دا النص اللي هيتعرض فيه الداتا اللي جايه من البار كود
+  String _data = 'Barcode Data appears here';
+  // String _data = '';
+
+  // داله الاسكان دي هيا اللي هيبق فيها كود الكيو ار كود
+   _scan() async{
+     // 1 -هات الكيو ار كود
+     // قبل ما عتنفذ اتنين استدعي ست استيت علشان تعمل ري بلد وتظهر التغيرات
+     // 2- قيمته حطها في المتغير اللي اسمه داتا
+    await FlutterBarcodeScanner
+        .scanBarcode('#000000', 'Cancel', true, ScanMode.BARCODE)
+        .then((value) => setState(() =>_data = value));
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -24,13 +40,12 @@ class _QRCodeState extends State<QRCode> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text('Demo One',
-          style: TextStyle(fontSize: 50.0),
+          Text(_data,
+          style: TextStyle(fontSize: 26.0),
           ),
           SizedBox(
             width: double.infinity,
           ),
-          // عمل زرار شكله حلو
           Material(
             elevation: 5.0,
             color: Colors.lightBlueAccent,
@@ -38,10 +53,12 @@ class _QRCodeState extends State<QRCode> {
             child: MaterialButton(
               minWidth: 200.0,
               height: 42.0,
-              onPressed: () {
-
-              },
-              child: Text('Scan Barcode',
+              // الضغطه هنا هتستدعي داله اسمها اسكان
+              onPressed: ()  {
+                _scan();
+               },
+            child: Text
+              ('Scan Barcode',
                 style: TextStyle(
                     fontSize: 32.0,
                     color: Colors.white
