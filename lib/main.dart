@@ -19,10 +19,10 @@ class _QRCodeState extends State<QRCode> {
   // String _data = '';
 
   // داله الاسكان دي هيا اللي هيبق فيها كود الكيو ار كود
-   _scan() async{
-     // 1 -هات الكيو ار كود
-     // قبل ما عتنفذ اتنين استدعي ست استيت علشان تعمل ري بلد وتظهر التغيرات
-     // 2- قيمته حطها في المتغير اللي اسمه داتا
+  _scan() async{
+    // 1 -هات الكيو ار كود
+    // قبل ما عتنفذ اتنين استدعي ست استيت علشان تعمل ري بلد وتظهر التغيرات
+    // 2- قيمته حطها في المتغير اللي اسمه داتا
     await FlutterBarcodeScanner
         .scanBarcode('#000000', 'Cancel', true, ScanMode.BARCODE)
         .then((value) => setState(() =>_data = value));
@@ -41,7 +41,7 @@ class _QRCodeState extends State<QRCode> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Text(_data,
-          style: TextStyle(fontSize: 26.0),
+            style: TextStyle(fontSize: 26.0),
           ),
           SizedBox(
             width: double.infinity,
@@ -56,9 +56,9 @@ class _QRCodeState extends State<QRCode> {
               // الضغطه هنا هتستدعي داله اسمها اسكان
               onPressed: ()  {
                 _scan();
-               },
-            child: Text
-              ('Scan Barcode',
+              },
+              child: Text
+                ('Scan Barcode',
                 style: TextStyle(
                     fontSize: 32.0,
                     color: Colors.white
